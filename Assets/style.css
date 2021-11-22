@@ -1,0 +1,17 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+header p {
+    padding: 5px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #0047BB;
+}
+
+header a {
+    padding: 5px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #0047BB;
+    text-decoration: none;
+}
