@@ -1,9 +1,6 @@
 console.log("Hello!");
 
-// Start by having welcome in html that disappears when a button is clicked
-// That also starts the timer (call function)
-
-// Timer variables
+// Timer code to run timer used once game starts
 var timer = document.querySelector(".time");
 var secondsLeft = 91;
 
@@ -21,7 +18,18 @@ function setTime() {
     }, 910);
   }
 
-//   add event listener for click and call this when you hide welcome
+// Q&A code to display q's and a's once game starts
+// Question has to replace and element
+// Question is an object which has properties that are teh answers
+var quizSection = document.getElementById("QandA");
+var posAnswers = document.getElementById("answers");
+var currentQuestion = 0;
+
+
+
+
+// Page starts with welcome message/rules
+// Once button to start game is clicked welcome message disappears and timers starts
 var startGameButton = document.getElementById("startGame");
 var welcome = document.querySelector(".welcome-msg");
 
@@ -33,5 +41,3 @@ startGameButton.addEventListener("click", function () {
 
   
 
-// Question has to replace and element
-// Question is an object which has properties that are teh answers
