@@ -41,38 +41,62 @@ function setTime() {
   }
 
 // Q&A code to display q's and a's once game starts
-// Question has to replace and element
-// Question is an object which has properties that are teh answers
+// Storing html elements as variables
 var quizSection = document.getElementById("QandA");
 var nowQuestion = document.getElementById("questions");
 var posAnswers = document.getElementById("answers");
+var isResult = document.getElementById("result");
 var currentQuestion = 0;
 var userChoice = "";
 
-// console.log(questionsData[currentQuestion].answersOptions);
-
 function showQuestion() {
+    // Render question to page
     nowQuestion.textContent = questionsData[currentQuestion].questionItself;
 
+    // For loop to iterate and render answers as buttons
     for (i = 0; i < questionsData[currentQuestion].answersOptions.length; i++) {
         var answerButton = document.createElement("button");
         answerButton.innerHTML=questionsData[currentQuestion].answersOptions[i];
+        posAnswers.appendChild(answerButton);
+
+        // Listener for button clicks and store player's answer
         answerButton.addEventListener("click", function() {
             userChoice = this.textContent
-            console.log("The user choice was " + userChoice)
-            return userChoice
+            // console.log("The userChoice was " + userChoice)
             
-        });
-        posAnswers.appendChild(answerButton);
-        }
-}
+            // Verify player's answer
+            // If correct, notify player, clear q and a, and move to next question
+            if (userChoice === questionsData[currentQuestion].answerCorrect) {
+                // console.log("userChoice is " + userChoice)
+                // console.log("The user was right! Next question.")
+                isResult.textContent = "Hey, that's right!"
+                nowQuestion.innerHTML = "";
+                posAnswers.innerHTML = "";
+                currentQuestion++
+                showQuestion();
+            } else {
+                secondsLeft=secondsLeft-10;
+                nowQuestion.innerHTML = "";
+                posAnswers.innerHTML = "";
+                currentQuestion++
+                showQuestion();
+            }
 
+
+        });
+    }
+}
 
 // Confirm if answer is correct (if wrong, minus 5 from time; else show correct and go to next q)
 
 // function checkAnswer() {
-//     if 
+//     if (userChoice = questionsData[currentQuestion].answerCorrect) {
+//         console.log("userChoice is " + userChoice)
+//         console.log("answerCorrect is" + questionsData[currentQuestion].answerCorrect)
+//     }
+
 // }
+
 
 
 
