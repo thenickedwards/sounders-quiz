@@ -55,10 +55,28 @@ main {
     margin-bottom: 30px;
 }
 
-.questions {
+/* Questions and answers styling */
+#answers {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+}
+
+button {
+    color: #0047BB;
+    text-align: left;
+    border-radius: 5px;
+    border: 2px solid #1D252D;
+    background-color: #F2F2F2;
+}
+
+/* #questions {
     padding: 0px 0px 20px 30px;
 }
 
-.answers {
+#answers {
     padding: 0px 0px 20px 55px;
-}
+} */
+
+/* HEX for Green #64A70B */
