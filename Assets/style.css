@@ -71,6 +71,16 @@ button {
     background-color: #F2F2F2;
 }
 
+.result-correct {
+    color: #64A70B;
+    font-style: italic;
+}
+
+.result-incorrect {
+    color: red;
+    font-style: italic;
+}
+
 /* #questions {
     padding: 0px 0px 20px 30px;
 }

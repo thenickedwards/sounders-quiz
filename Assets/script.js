@@ -1,4 +1,4 @@
-console.log("Hello!");
+console.log("Hello and welcome to the quiz!");
 
 // Q&A variables, objects, arrays, etc.
 var questionsData = [
@@ -17,7 +17,7 @@ var questionsData = [
     {
         questionItself: "Four plus Three Four?",
         answersOptions: ["Eight", "Nine", "Ten", "Eleven"],
-        answerCorrect: "Six",
+        answerCorrect: "Eight",
     },
 
 ];
@@ -45,7 +45,7 @@ function setTime() {
 var quizSection = document.getElementById("QandA");
 var nowQuestion = document.getElementById("questions");
 var posAnswers = document.getElementById("answers");
-var isResult = document.getElementById("result");
+var showResult = document.getElementById("result");
 var currentQuestion = 0;
 var userChoice = "";
 
@@ -69,13 +69,16 @@ function showQuestion() {
             if (userChoice === questionsData[currentQuestion].answerCorrect) {
                 // console.log("userChoice is " + userChoice)
                 // console.log("The user was right! Next question.")
-                isResult.textContent = "Hey, that's right!"
+                showResult.textContent = "Hey, you got that one right!";
+                showResult.className = "result-correct";
                 nowQuestion.innerHTML = "";
                 posAnswers.innerHTML = "";
                 currentQuestion++
                 showQuestion();
             } else {
                 secondsLeft=secondsLeft-10;
+                showResult.textContent = "Sorry, that wasn't correct.";
+                showResult.className = "result-incorrect";
                 nowQuestion.innerHTML = "";
                 posAnswers.innerHTML = "";
                 currentQuestion++
@@ -114,7 +117,6 @@ startGameButton.addEventListener("click", function () {
 
 // TODO's:
 // Update rules in Welcome Msg
-// !!! Make answers appear as buttons
 
 // Option to store score
 // highscores pg
