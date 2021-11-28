@@ -130,35 +130,36 @@ function endQuiz() {
     scoreSubmit.className = "show";
     // console.log("playerScore is " + playerScore);
     finalScore.textContent = playerScore
+    console.log("playerScore is " + playerScore);
 }
 
 
 
-// Code to store current player's current score to high scores pg
-var currentScore = localStorage.getItem("score")
-var previousScores = localStorage.getItem("highscores");
-var scoresArray = [];
 
-if (previousScores) {
-    previousScores = JSON.parse(previousScores);
-    for (index = 0; index < previousScores.length; index++) {
-        scoresArray.push(previousScores[index])
-    }
-}
+// Store current player's current score to object and then push to high scores
+var currentScore = localStorage.getItem("score");
+var playerName = document.getElementById("playername");
+var submitButton = document.getElementById("submitnow");
 
 function submitScore(event) {
     event.preventDefault();
-    scoresArray.push({ "name": playername.value, "score": playerScore.value});
-    location.setItem("highscores", JSON.stringify(scoresArray));
-    location.href = "./highscores.html";
+    
+    if (playerName !== "") {
+        var allScores = JSON.parse(localStorage.getItem("highscores")) || [];
+        var scoreObject = {
+            name: playerName.value,
+            score: playerScore
+        };
+        
+        allScores.push(scoreObject);
+        localStorage.setItem("highscores", JSON.stringify(allScores));
+        location.href = "./highscores.html";
+    } else {
+        alert("Don't forget to add your initals!");
+    }
 }
 
-scoreSubmit.addEventListener("click", submitScore);
-
-
-
-
-
+submitButton.addEventListener("click", submitScore);
 
 // Page starts with welcome message/rules
 // Once button to start game is clicked welcome message disappears and timers starts
