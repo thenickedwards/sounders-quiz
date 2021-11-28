@@ -9,6 +9,20 @@ body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+/* General use styling */
+.greentext {
+    color: #64A70B;
+    font-weight: bold;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: unset;
+}
+
 /* Header styling */
 nav {
     display: flex;
@@ -79,19 +93,6 @@ button {
 .result-incorrect {
     color: red;
     font-style: italic;
-}
-
-#greentext {
-    color: #64A70B;
-    font-weight: bold;
-}
-
-.hide {
-    display: none;
-}
-
-.show {
-    display: unset;
 }
 
 /* Highscores styling */

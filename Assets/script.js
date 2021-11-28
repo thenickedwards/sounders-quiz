@@ -8,21 +8,27 @@ scoreSubmit.className = "hide";
 // Q&A variables, objects, arrays, etc.
 var questionsData = [
     {
-        questionItself: "Two plus Two equals?",
-        answersOptions: ["One", "Two", "Three", "Four"],
-        answerCorrect: "Four",
+        questionItself: "Which Pacific Northwest icon is emblazoned into the Sounders crest?",
+        answersOptions: ["Mount Rainier", "Seattle Space Needle", "Waters of Puget Sound", "A Ride the Ducks Boat"],
+        answerCorrect: "Seattle Space Needle",
     },
 
     {
-        questionItself: "Three plus Three equals?",
-        answersOptions: ["Five", "Six", "Seven", "Eight"],
-        answerCorrect: "Six",
+        questionItself: "In what year did the original Seattle Sounders debut in the North American Soccer League?",
+        answersOptions: ["2009", "2016", "1974", "1983"],
+        answerCorrect: "1974",
     },
 
     {
-        questionItself: "Four plus Four?",
-        answersOptions: ["Eight", "Nine", "Ten", "Eleven"],
-        answerCorrect: "Eight",
+        questionItself: "As of 2021, which Sounder is the all-time leading goal scorer with 60 goals across all competitions?",
+        answersOptions: ["Fredy Montero", "Clint Dempsey", "Nicolás Lodeiro", "Raúl Ruidíaz"],
+        answerCorrect: "Fredy Montero",
+    },
+
+    {
+        questionItself: "In late summer of 2018, Seattle Sounders set a record for most consecutive wins during the post-shootout era. How many games was their winning streak?",
+        answersOptions: ["15", "34", "11", "9"],
+        answerCorrect: "9",
     },
 
 ];
@@ -30,7 +36,7 @@ var questionsData = [
 // Timer code to run timer used once game starts
 var timer = document.querySelector(".time");
 var timerInterval;
-var secondsLeft = 90;
+var secondsLeft = 10;
 var remainingTime;
 
 function startTime() {
@@ -41,11 +47,9 @@ function startTime() {
   
       if(secondsLeft < 0) {
         // Stops execution of action at set interval
-        // console.log('Seconds left reached 0'); 
         clearInterval(timerInterval);
         alert("Oh no! You ran out of time which means your score is zero. Try the quiz again to get a better score!");
         location.reload();
-        // endQuiz();
       }
   
     }, 1000);
@@ -79,28 +83,17 @@ function showQuestion() {
         // Listener for button clicks and store player's answer
         answerButton.addEventListener("click", function() {
             userChoice = this.textContent
-            // console.log("The userChoice was " + userChoice)
             
             // Verify player's answer
             // If correct, notify player, clear q and a, and move to next question
             if (userChoice === questionsData[currentQuestion].answerCorrect) {
-                // console.log("userChoice is " + userChoice)
-                // console.log("The user was right! Next question.")
                 showResult.textContent = "Hey, you got that one right!";
                 showResult.className = "result-correct";
-                // nowQuestion.innerHTML = "";
-                // posAnswers.innerHTML = "";
-                // currentQuestion++
-                // showQuestion();
                 nextQuestion();
             } else {
                 secondsLeft=secondsLeft-10;
                 showResult.textContent = "Sorry, that wasn't correct.";
                 showResult.className = "result-incorrect";
-                // nowQuestion.innerHTML = "";
-                // posAnswers.innerHTML = "";
-                // currentQuestion++
-                // showQuestion();
                 nextQuestion();
             }
         });
@@ -108,8 +101,7 @@ function showQuestion() {
 }
 
 function nextQuestion() {
-    // Can we use ++ here?
-    currentQuestion+=1;
+    currentQuestion++;
     // If no questions left, move to end quiz
      if (currentQuestion > questionsData.length-1) {
         endQuiz();
@@ -128,13 +120,9 @@ function endQuiz() {
     posAnswers.innerHTML = "";
     showResult.textContent = "";
     scoreSubmit.className = "show";
-    // console.log("playerScore is " + playerScore);
     finalScore.textContent = playerScore
-    console.log("playerScore is " + playerScore);
+    console.log("The playerScore is " + playerScore);
 }
-
-
-
 
 // Store current player's current score to object and then push to high scores
 var currentScore = localStorage.getItem("score");
@@ -172,8 +160,4 @@ startGameButton.addEventListener("click", function () {
     showQuestion();
 });
 
-
-// TODO's:
-// Option to store score
-// highscores pg
-// update q's and a's
+// Thanks for scrolling all the way through the code! #YNYA
