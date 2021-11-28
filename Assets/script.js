@@ -1,5 +1,8 @@
 console.log("Hello and welcome to the quiz!");
 var playerScore;
+var finalScore = document.querySelector("#final-score");
+var scoreSubmit = document.querySelector("#submit-score");
+scoreSubmit.className = "hide";
 
 // Q&A variables, objects, arrays, etc.
 var questionsData = [
@@ -16,7 +19,7 @@ var questionsData = [
     },
 
     {
-        questionItself: "Four plus Three Four?",
+        questionItself: "Four plus Four?",
         answersOptions: ["Eight", "Nine", "Ten", "Eleven"],
         answerCorrect: "Eight",
     },
@@ -48,9 +51,7 @@ function startTime() {
   // Stop timer function (used if no more questions left)
 function stopTime() {
     clearInterval(timerInterval);
-    remainingTime = secondsLeft;
-    console.log("secondsLeft is " + secondsLeft);
-    console.log("remainingTime is " + remainingTime);
+    playerScore = secondsLeft
     // return remainingTime;
 }
 
@@ -109,9 +110,9 @@ function showQuestion() {
 
 function nextQuestion() {
     currentQuestion+=1;
-     // If no questions left, move to end quiz
+    // If no questions left, move to end quiz
      if (currentQuestion > questionsData.length-1) {
-        stopTime();
+        endQuiz();
     }
     else {
         // still questions left, show next q
@@ -123,9 +124,14 @@ function nextQuestion() {
 
 function endQuiz() {
     stopTime();
+    nowQuestion.innerHTML = "";
+    posAnswers.innerHTML = "";
+    showResult.textContent = "";
+    scoreSubmit.className = "show";
+    console.log("playerScore is " + playerScore);
+    finalScore.textContent = playerScore
     // present form for submitting high score
     // show score and offer form for inits
-
 }
 
 

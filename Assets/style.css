@@ -81,12 +81,15 @@ button {
     font-style: italic;
 }
 
-/* #questions {
-    padding: 0px 0px 20px 30px;
+#final-score {
+    color: #64A70B;
+    font-weight: bold;
 }
 
-#answers {
-    padding: 0px 0px 20px 55px;
-} */
+.hide {
+    display: none;
+}
 
-/* HEX for Green #64A70B */
+.show {
+    display: unset;
+}
