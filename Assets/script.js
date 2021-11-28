@@ -146,14 +146,14 @@ if (previousScores) {
     }
 }
 
-function formSubmit(event) {
+function submitScore(event) {
     event.preventDefault();
     scoresArray.push({ "name": playername.value, "score": playerScore.value});
     location.setItem("highscores", JSON.stringify(scoresArray));
     location.href = "./highscores.html";
 }
 
-scoreSubmit.addEventListener("click", formSubmit);
+scoreSubmit.addEventListener("click", submitScore);
 
 
 
