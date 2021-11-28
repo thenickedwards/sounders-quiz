@@ -81,7 +81,7 @@ button {
     font-style: italic;
 }
 
-#final-score {
+#greentext {
     color: #64A70B;
     font-weight: bold;
 }
@@ -92,4 +92,23 @@ button {
 
 .show {
     display: unset;
+}
+
+/* Highscores styling */
+
+table {
+    margin: 20px;
+    width: 500px;
+}
+
+td {
+    text-align: center;
+}
+
+#playercol {
+    color: #0047BB;
+}
+
+#scorecol {
+    color: #64A70B;
 }
