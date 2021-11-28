@@ -1,4 +1,5 @@
 console.log("Hello and welcome to the quiz!");
+
 var playerScore;
 var finalScore = document.querySelector("#final-score");
 var scoreSubmit = document.querySelector("#submit-score");
@@ -38,11 +39,13 @@ function startTime() {
       secondsLeft--;
       timer.textContent = secondsLeft;
   
-      if(secondsLeft === 0) {
+      if(secondsLeft < 0) {
         // Stops execution of action at set interval
-        console.log('Seconds left reached 0'); 
+        // console.log('Seconds left reached 0'); 
         clearInterval(timerInterval);
-        endQuiz();
+        alert("Oh no! You ran out of time which means your score is zero. Try the quiz again to get a better score!");
+        location.reload();
+        // endQuiz();
       }
   
     }, 1000);
@@ -52,7 +55,6 @@ function startTime() {
 function stopTime() {
     clearInterval(timerInterval);
     playerScore = secondsLeft
-    // return remainingTime;
 }
 
 // Q&A code to display q's and a's once game starts
@@ -66,7 +68,6 @@ var userChoice = "";
 
 function showQuestion() {
     // Render question to page
-    console.log("The currentQuestion is " + currentQuestion);
     nowQuestion.textContent = questionsData[currentQuestion].questionItself;
 
     // For loop to iterate and render answers as buttons
@@ -102,13 +103,12 @@ function showQuestion() {
                 // showQuestion();
                 nextQuestion();
             }
-
-
         });
     }
 }
 
 function nextQuestion() {
+    // Can we use ++ here?
     currentQuestion+=1;
     // If no questions left, move to end quiz
      if (currentQuestion > questionsData.length-1) {
@@ -128,11 +128,36 @@ function endQuiz() {
     posAnswers.innerHTML = "";
     showResult.textContent = "";
     scoreSubmit.className = "show";
-    console.log("playerScore is " + playerScore);
+    // console.log("playerScore is " + playerScore);
     finalScore.textContent = playerScore
-    // present form for submitting high score
-    // show score and offer form for inits
 }
+
+
+
+// Code to store current player's current score to high scores pg
+var currentScore = localStorage.getItem("score")
+var previousScores = localStorage.getItem("highscores");
+var scoresArray = [];
+
+if (previousScores) {
+    previousScores = JSON.parse(previousScores);
+    for (index = 0; index < previousScores.length; index++) {
+        scoresArray.push(previousScores[index])
+    }
+}
+
+function formSubmit(event) {
+    event.preventDefault();
+    scoresArray.push({ "name": playername.value, "score": playerScore.value});
+    location.setItem("highscores", JSON.stringify(scoresArray));
+    location.href = "./highscores.html";
+}
+
+scoreSubmit.addEventListener("click", formSubmit);
+
+
+
+
 
 
 // Page starts with welcome message/rules
@@ -148,7 +173,6 @@ startGameButton.addEventListener("click", function () {
 
 
 // TODO's:
-// Update rules in Welcome Msg
-
 // Option to store score
 // highscores pg
+// update q's and a's
