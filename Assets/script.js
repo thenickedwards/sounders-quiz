@@ -1,4 +1,5 @@
 console.log("Hello and welcome to the quiz!");
+var playerScore;
 
 // Q&A variables, objects, arrays, etc.
 var questionsData = [
@@ -24,21 +25,31 @@ var questionsData = [
 
 // Timer code to run timer used once game starts
 var timer = document.querySelector(".time");
-var secondsLeft = 91;
+var timerInterval;
+var secondsLeft = 90;
+var remainingTime;
 
-function setTime() {
+function startTime() {
     // Sets interval in variable
-    var timerInterval = setInterval(function() {
+    timerInterval = setInterval(function() {
       secondsLeft--;
       timer.textContent = secondsLeft;
   
       if(secondsLeft === 0) {
         // Stops execution of action at set interval
         clearInterval(timerInterval);
+        endQuiz();
       }
   
-    }, 910);
+    }, 1000);
   }
+
+  // Stop timer function (used if no more questions left)
+function stopTime() {
+    clearInterval(timerInterval);
+    remainingTime = secondsLeft;
+    return remainingTime;
+}
 
 // Q&A code to display q's and a's once game starts
 // Storing html elements as variables
@@ -71,18 +82,22 @@ function showQuestion() {
                 // console.log("The user was right! Next question.")
                 showResult.textContent = "Hey, you got that one right!";
                 showResult.className = "result-correct";
-                nowQuestion.innerHTML = "";
-                posAnswers.innerHTML = "";
-                currentQuestion++
-                showQuestion();
+                // nowQuestion.innerHTML = "";
+                // posAnswers.innerHTML = "";
+                // currentQuestion++
+                // showQuestion();
+                nextQuestion();
+            } else if (questionsData[currentQuestion] === undefined) {
+                stopTime();
             } else {
                 secondsLeft=secondsLeft-10;
                 showResult.textContent = "Sorry, that wasn't correct.";
                 showResult.className = "result-incorrect";
-                nowQuestion.innerHTML = "";
-                posAnswers.innerHTML = "";
-                currentQuestion++
-                showQuestion();
+                // nowQuestion.innerHTML = "";
+                // posAnswers.innerHTML = "";
+                // currentQuestion++
+                // showQuestion();
+                nextQuestion();
             }
 
 
@@ -90,17 +105,29 @@ function showQuestion() {
     }
 }
 
-// Confirm if answer is correct (if wrong, minus 5 from time; else show correct and go to next q)
+function nextQuestion() {
+     // If no questions move to end quiz 
+     // opt1 questionsData[currentQuestion] === undefined]
+     // opt2 questionsData[currentQuestion] > questionsData.length
+    if (questionsData[currentQuestion] === undefined) {
+        stopTime();
+    }
+    else {
+        // else still questions left
+        nowQuestion.innerHTML = "";
+        posAnswers.innerHTML = "";
+        currentQuestion++
+        showQuestion();
+    }
+}
 
-// function checkAnswer() {
-//     if (userChoice = questionsData[currentQuestion].answerCorrect) {
-//         console.log("userChoice is " + userChoice)
-//         console.log("answerCorrect is" + questionsData[currentQuestion].answerCorrect)
-//     }
-
-// }
-
-
+function endQuiz() {
+    // don't clear q and a
+    stopTime();
+    // present form for submitting high score
+    // show score and offer form for inits
+    console.log("Remaining time is " + secondsLeft);
+}
 
 
 // Page starts with welcome message/rules
@@ -110,7 +137,7 @@ var welcome = document.querySelector(".welcome-msg");
 
 startGameButton.addEventListener("click", function () {
     welcome.setAttribute("style", "display:none;");
-    setTime();
+    startTime();
     showQuestion();
 });
 
