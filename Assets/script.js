@@ -37,6 +37,7 @@ function startTime() {
   
       if(secondsLeft === 0) {
         // Stops execution of action at set interval
+        console.log('Seconds left reached 0'); 
         clearInterval(timerInterval);
         endQuiz();
       }
@@ -48,7 +49,9 @@ function startTime() {
 function stopTime() {
     clearInterval(timerInterval);
     remainingTime = secondsLeft;
-    return remainingTime;
+    console.log("secondsLeft is " + secondsLeft);
+    console.log("remainingTime is " + remainingTime);
+    // return remainingTime;
 }
 
 // Q&A code to display q's and a's once game starts
@@ -62,6 +65,7 @@ var userChoice = "";
 
 function showQuestion() {
     // Render question to page
+    console.log("The currentQuestion is " + currentQuestion);
     nowQuestion.textContent = questionsData[currentQuestion].questionItself;
 
     // For loop to iterate and render answers as buttons
@@ -87,8 +91,6 @@ function showQuestion() {
                 // currentQuestion++
                 // showQuestion();
                 nextQuestion();
-            } else if (questionsData[currentQuestion] === undefined) {
-                stopTime();
             } else {
                 secondsLeft=secondsLeft-10;
                 showResult.textContent = "Sorry, that wasn't correct.";
@@ -106,27 +108,24 @@ function showQuestion() {
 }
 
 function nextQuestion() {
-     // If no questions move to end quiz 
-     // opt1 questionsData[currentQuestion] === undefined]
-     // opt2 questionsData[currentQuestion] > questionsData.length
-    if (questionsData[currentQuestion] === undefined) {
+    currentQuestion+=1;
+     // If no questions left, move to end quiz
+     if (currentQuestion > questionsData.length-1) {
         stopTime();
     }
     else {
-        // else still questions left
+        // still questions left, show next q
         nowQuestion.innerHTML = "";
         posAnswers.innerHTML = "";
-        currentQuestion++
         showQuestion();
     }
 }
 
 function endQuiz() {
-    // don't clear q and a
     stopTime();
     // present form for submitting high score
     // show score and offer form for inits
-    console.log("Remaining time is " + secondsLeft);
+
 }
 
 
