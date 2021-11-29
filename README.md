@@ -17,6 +17,6 @@ URL for published page: https://thenickedwards.github.io/sounders-quiz/
 URL for GitHub repo: https://github.com/thenickedwards/sounders-quiz
 
 ## Screenshots of Page(s)
-![Screenshot of Nick Edwards' Sounders Quiz webpage.](./Assets/SQ_screenshot-main.png)
+![Screenshot of Nick Edwards' Sounders Quiz webpage.](SQ_screenshot-main.png)
 
-![Screenshot of Nick Edwards' Sounders Quiz High Scores webpage.](./Assets/SQ_screenshot-scores.png)
+![Screenshot of Nick Edwards' Sounders Quiz High Scores webpage.](SQ_screenshot-scores.png)
