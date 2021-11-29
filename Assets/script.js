@@ -36,7 +36,7 @@ var questionsData = [
 // Timer code to run timer used once game starts
 var timer = document.querySelector(".time");
 var timerInterval;
-var secondsLeft = 10;
+var secondsLeft = 90;
 var remainingTime;
 
 function startTime() {
