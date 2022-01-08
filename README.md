@@ -20,3 +20,5 @@ URL for GitHub repo: https://github.com/thenickedwards/sounders-quiz
 ![Screenshot of Nick Edwards' Sounders Quiz webpage.](SQ_screenshot-main.png)
 
 ![Screenshot of Nick Edwards' Sounders Quiz High Scores webpage.](SQ_screenshot-scores.png)
+
+[![License: LGPL v3](https://img.shields.io/badge/License-LGPL_v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0)
